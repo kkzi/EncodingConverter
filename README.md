@@ -54,6 +54,14 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake 
 cmake --build . --config Release
 ```
 
+## Download Precompiled Version
+
+If you prefer not to build from source, you can download the precompiled version directly:
+
+- **Latest Release**: [https://github.com/kkzi/EncodingConverter/releases/tag/latest](https://github.com/kkzi/EncodingConverter/releases/tag/latest)
+
+Simply download the executable and run it on your Windows system.
+
 ## Usage
 
 ### Application Interface
