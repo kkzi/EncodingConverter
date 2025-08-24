@@ -1,0 +1,67 @@
+----------------------------------------------------------------------
+General
+----------------------------------------------------------------------
+
+- Look at 'TODO' or '@todo' in source code
+
+
+----------------------------------------------------------------------
+Layout Managers
+----------------------------------------------------------------------
+
+- Xul (like Bix but more general).
+
+
+----------------------------------------------------------------------
+Widgets
+----------------------------------------------------------------------
+
+- ReBar
+- DataGrid (the DataGrids example is a good start)
+- ScrollBar?
+- FlatScrollBar?
+- Header?
+- PageSetupDialog
+- RichEdit?
+- SplashScreen
+- TaskBar
+
+
+----------------------------------------------------------------------
+Examples
+----------------------------------------------------------------------
+
+- DataGrids (complete)
+- Finish Xuls or GridLayout
+
+
+----------------------------------------------------------------------
+API
+----------------------------------------------------------------------
+
+- Accelerators <-> Commands
+
+- DL_BEGINDRAG, DL_CANCELDRAG, DL_DRAGGING, DL_DROPPED
+
+- document why getOrientation() and setOrientation() don't exist for
+  Spinner (it's because the UDS_HORZ style can't be changed after up-down
+  control is created).
+
+- methods to use: EnableScrollBar
+
+- All HTHEME stuff (add "Theme" class).
+  + IsAppThemed
+
+- Add support for FlashWindowEx.
+
+- Remember the WM_MENUSELECT message for status-bars.
+
+- add support for DrawFrameControl, DrawState, DrawEdge
+  as
+    Graphics::drawControl
+    Graphics::drawState
+    Graphics::drawEdge
+
+- mouseHover should be? (there is already some code)
+
+- a "MVC: Model View Controller" pattern (also known as Observer pattern).

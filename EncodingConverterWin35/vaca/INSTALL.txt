@@ -1,0 +1,119 @@
+----------------------------------------------------------------------
+General Instructions
+----------------------------------------------------------------------
+
+To build Vaca you will need CMake 2.6:
+
+  http://www.cmake.org/
+
+CMake creates Makefiles (GNU Make, NMake) and Visual Studio 2005/2008
+solutions.
+
+To build the project you can create a folder to store all the output
+of the compilation process (so output is not mixed with source code).
+The following example compiles the entire project using NMake (VS8/9).
+First of all you open cmd.exe (Start/Run/cmd) and go to the Vaca
+directory:
+
+  C:\...>cd C:\Vaca
+  C:\Vaca>mkdir build-vc9
+  C:\Vaca>cd build-vc9
+  C:\Vaca\build-vc9>vsvars32
+  C:\Vaca\build-vc9>cmake .. -G "NMake Makefiles"
+  C:\Vaca\build-vc9>nmake
+
+That will compile the Debug DLL version of the library.
+You can change the current compilation options using CMake.
+For example, if you want to compile the Release version you
+can do:
+
+  C:\Vaca\build-vc9>cmake .. -DCMAKE_BUILD_TYPE=Release
+  C:\Vaca\build-vc9>nmake
+
+If you want the static version (no DLL):
+
+  C:\Vaca\build-vc9>cmake .. -DSHARED=off
+  C:\Vaca\build-vc9>nmake
+
+Also you can modify compilation variables in C:\Vaca\build-vc9\CMakeCache.txt.
+
+
+----------------------------------------------------------------------
+Available Options
+----------------------------------------------------------------------
+
+  -DCMAKE_BUILD_TYPE=Debug
+    Compiles the Debug version.
+
+  -DCMAKE_BUILD_TYPE=Release
+    Compiles the Release version.
+
+  -DSHARED=off
+    Compiles static linking library (without DLL).
+
+  -DTHEMES=off
+    Compiles examples without using WinXP theme support.
+
+
+----------------------------------------------------------------------
+Compiling with MinGW
+----------------------------------------------------------------------
+
+1) Decompress the Vaca-x.x.x.zip in the "C:\Vaca\" directory (you can
+   decompress it anywhere).
+
+2) Open a cmd shell (Start/Run/cmd) and check that you have MinGW right
+   installed:
+
+     C:\...>cd C:\Vaca
+     C:\Vaca>g++ --version
+     g++ (GCC) 3.4.5 (mingw special)
+     ...
+
+     C:\Vaca>make --version
+     GNU Make version 3.79.1, by Richard Stallman and Roland McGrath.
+     ...
+
+   If you get errors, maybe you have to setup the enviroment variables.
+   E.g.:
+
+     C:\Vaca>set PATH=c:\mingw\bin;c:\msys\1.0\bin;%PATH%
+
+3) Create Makefiles
+
+     C:\Vaca>mkdir build-gcc-3.4
+     C:\Vaca>cd build-gcc-3.4
+     C:\Vaca\build-gcc-3.4>cmake .. -G "MSYS Makefiles"
+
+   Or if you do not have MSYS installed, you can use
+
+     C:\Vaca\build-gcc-3.4>cmake .. -G "MinGW Makefiles"
+
+4) Compile the entire project
+
+     C:\Vaca\build-gcc-3.4>make
+
+   Or if you do not have MSYS
+
+     C:\Vaca\build-gcc-3.4>mingw32-make
+
+
+----------------------------------------------------------------------
+Compiling with Visual Studio 2005/2008
+----------------------------------------------------------------------
+
+1) Decompress the Vaca-x.x.x.zip in the "C:\Vaca\" directory (you can
+   decompress it anywhere).
+
+2) Open a cmd shell (Start/Run/cmd) and then execute the vsvars32:
+
+     C:\...>cd C:\Vaca
+     C:\Vaca>vsvars32
+
+3) Create VS projects
+
+     C:\Vaca>mkdir build-vs9
+     C:\Vaca>cd build-vs9
+     C:\Vaca\build-vs9>cmake .. -G "Visual Studio 9 2008"
+
+4) Open the solution "C:\Vaca\build-vs9\Vaca.sln" with Visual Studio 9

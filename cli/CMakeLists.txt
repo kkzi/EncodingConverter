@@ -1,0 +1,5 @@
+﻿project(encoding_converter)
+find_package(cxxopts CONFIG REQUIRED)
+add_executable(encoding_converter main.cpp)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../common)
+target_link_libraries(${PROJECT_NAME} PRIVATE Iconv::Iconv uchardet::libuchardet cxxopts::cxxopts)

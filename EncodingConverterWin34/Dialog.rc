@@ -1,0 +1,88 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+#include "afxres.h"
+#include "afxdlgs.h"
+
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(65001)
+
+/////////////////////////////////////////////////////////////////////////////
+// Icon resources
+
+IDI_APP_ICON            ICON                    "app.ico"
+
+#ifdef APSTUDIO_INVOKED
+1 TEXTINCLUDE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE
+BEGIN
+    "\r\n"
+    "\0"
+END
+#endif
+
+IDD_MAINDIALOG DIALOGEX 0, 0, 400, 260
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "File Encoding Converter"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "Code Directory:",IDC_DIR_PATH_LABEL,10,12,60,8
+    EDITTEXT        IDC_DIR_PATH_EDIT,75,10,240,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BROWSE_DIR_BTN,320,10,70,14
+    
+    LTEXT           "File Extensions:",IDC_FILE_EXT_LABEL,10,32,60,8
+    EDITTEXT        IDC_FILE_EXT_EDIT,75,30,240,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_FILE_TYPE_COMBO,320,31,70,14,CBS_DROPDOWNLIST | WS_VSCROLL
+    
+    LTEXT           "Target Encoding:",IDC_TARGET_ENC_LABEL,10,52,60,8
+    COMBOBOX        IDC_TARGET_ENC_COMBO,75,50,60,100,CBS_DROPDOWNLIST | WS_VSCROLL
+    
+    PUSHBUTTON      "Start Conversion",IDC_START_CONVERSION_BTN,10,75,64,16
+    CONTROL         "Create Backup Files",IDC_CREATE_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,82,80,100,8
+    
+    LISTBOX         IDC_LOG_LIST,10,96,380,140,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    
+    CONTROL         "",IDC_PROGRESS_BAR,"msctls_progress32",WS_BORDER,10,240,100,12
+    LTEXT           "Ready",IDC_STATUS_LABEL,120,242,290,12
+    PUSHBUTTON      "Clear Log",IDC_CLEAR_LOG_BTN,340,240,50,12
+END
+
+// Version information
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+FILEOS          VOS_NT_WINDOWS32
+FILETYPE        VFT_APP
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName", "Encoding Converter"
+            VALUE "FileDescription", "File Encoding Converter"
+            VALUE "FileVersion", "1.0.0.0"
+            VALUE "InternalName", "EncodingConverterWin34"
+            VALUE "LegalCopyright", "Copyright © 2023"
+            VALUE "OriginalFilename", "EncodingConverterWin34.exe"
+            VALUE "ProductName", "File Encoding Converter"
+            VALUE "ProductVersion", "1.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+// Manifest resource
+1 RT_MANIFEST "app.manifest"

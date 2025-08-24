@@ -1,0 +1,257 @@
+Vaca 0.1
+
+- Converted Style class to constexpr
+- Simplified signal/slot using std::function()
+- Removed Bind, we have C++11 lambdas now
+- Use new C++11 enum class instead of Enum
+
+Vaca 0.0.8
+
+- Using CMake as building system.
+- Unicode support is activated by default.
+- Added RichEdit widget.
+- Added Thread::enqueueMessage and Widget::enqueueMessage.
+- Added Vaca/backward.h header file.
+- Replaced styles macros with WidgetName::Styles::* namespace.
+- Implemented ReBar widget (Jie Zhang contribution).
+- Added SplitBar widget/example (Jie Zhang contribution).
+- Added Scrolling example.
+- Added Thread::sleep and Thread::yield.
+- Added ScrollEvent and ScrollRequest. Modified onScroll to
+  receive a ScrollEvent.
+- Fixed a problem in BandedDockArea::onRemoveDockBar with a
+  call to std::vector<>::erase() and invalid iterators.
+- Fixed a bug in Frame::preTranslateMessage that processed
+  menu-shortcuts even when the Frame were disabled.
+
+Vaca 0.0.7
+
+- Added MenuPopup.
+- Added RefWrapper class and Ref() method to support references in Bind().
+- Added GraphicsPath.
+- Added HttpRequest class.
+- Added FontMetrics class.
+- Added StatusBar widget. Now Frame has an associated StatusBar.
+- Added Separator widget.
+- Added RadioGroup::onChange event/signal.
+- All methods that return Win32 handles (HWND, HDC, HBRUSH,
+  HRGN, etc.) now are called getHandle().
+- Added GdiObject and SmartPtr.
+- Brush, Cursor, Font, Icon, Image, ImageList, Pen, and
+  Region are SmartPtrs.
+- Widget destructor deletes children.
+- Renamed MouseButtons to MouseButton.
+- Renamed Borders to Sides.
+- Fixed Bix::getPreferredSize when EvenX or EvenY flags are activated.
+- Now MenuItem::setEnabled/Checked can be used although the item isn't
+  in a parent Menu.
+- Removed SelfDestruction class (with SmartPtrs it isn't needed anymore).
+
+Vaca 0.0.6
+
+- Removed dependencies with Boost library.
+  - Added Slot/Signal and Bind (placeholders aren't available, sorry).
+  - Added ConditionVariable (from William E. Kempf code, Boost.Threads).
+  - Added TimePoint.
+- Added WidgetClassName.
+- Renamed all headers files from .h to .hpp
+- Added WidgetHitTestEnum.
+- Changed all enumerations to Enum and EnumSet.
+- Renamed CreateHWNDException to CreateWidgetException.
+- Now String::getFile* methods use reverse_iterator.
+- Fixed a bug in Register() where WidgetClassName weren't the same
+  scope as "class_name".
+- Fixed a bug in EditableListBox (when remove a node in a ListBox with
+  vertical scroll).
+- Removed all utilities (they were too big to include inside the
+  main Vaca distribution).
+- Finally Trees example works (Added removeNode to TreeNode and TreeView).
+- Renamed acquireFocus to requestFocus.
+- Renamed acquireCapture to captureMouse.
+- Renamed releaseCapture to releaseMouse.
+- Thanks to Emil Kirichev:
+  - Fixed String::fromInt to handle negative numbers.
+  - Fixed a problem with mouse coordinates in all mouse events. Now we
+    use MAKEPOINTS to get negative coordinates when we capture the
+    mouse.
+  - Added Graphics::drawPolyline(const vector<Point>& points).
+- Fixed memory leaks in some examples.
+- Fixed bugs with memory allocation/deallocation (usage of delete[])
+- Fixed bugs with TreeNode/TreeView.
+- Fixed problem with infinite message-loops when all Frames are hidden.
+- Fixed String(const char *, ...) constructors with Unicode activated.
+- Added two methods for String: to_string and to_wstring.
+- Added more signals for Widget: See LikeScript example (idea of
+  Przemyslaw Szurmak).
+- New Bix layout manager.
+- Renamed Widget::onIdAction() to Widget::onCommand().
+- Added Command stuff (Command, CommandSignal, CommandsClient),
+  MenuItem and ToolBar uses commands now.
+- Removed MenuItem::Action and MenuItem::Update signals (commands
+  interface is preferred).
+
+Vaca 0.0.5
+
+- about examples:
+  - rewritten the AnchorLayouts example.
+  - modified Sudoku example.
+  - removed Calendar example (AddressBook utility is better).
+  - removed SimpleWorld example (HelloWorld is good enough).
+  - removed Curves example (Maths replaced it).
+  - renamed TimerThread to ThreadKiller (to avoid confusion with
+    internal TimerThread class).
+  - new examples: AddressBook, AutoCompletion, BouncingBalls,
+    ComboBoxes, DataGrids, FontMetrics, Maths, PensBrushes.
+- fixed potential bugs for WM_DRAWITEM and WM_PAINT when the
+  area to draw is empty.
+- added focus to LinkLabel.
+- added Widget::setPreferredSize and Widget::getPreferredSize,
+  and renamed preferredSize to onPreferredSize.
+- renamed setDoubleBuffering -> setDoubleBuffered (like Java)
+- moved Widget::keepEnabledSynchronised -> Frame::keepSynchronized.
+- fixed double-buffering for CustomButton.
+- added Pen and Brush classes.
+- fixed Menu::getMdiListMenu.
+- renamed Widget::focus to Widget::acquireFocus.
+- added ComboBox widget.
+- added profile option for MinGW in Makefile.
+- added more Bind overloads.
+- finally done (and enhanced) all the memory management:
+  - removed "dispose", "isDisposedAscendent", "onDestroy", and
+    "deleteAfterEvent" methods of Widget class.
+  - removed "Widget::mDisposed" and "Widget::mCriticalInner" fields.
+  - added the "delete_widget" function in the Vaca namespace.
+  - added "ref", "unref", and "getRefCount" in Component.
+  - MenuBars should be used dynamically.
+- added all methods to control scroll and widget displacement:
+  - getScrollInfo, setScrollInfo;
+  - getScrollPos, setScrollPos;
+  - getScrollPoint, setScrollPoint;
+  - bringToTop, sendToBack, moveAfter, moveBefore;
+- removed Widget::wantArrowCursor (deprecated).
+- renamed TabStopStyle to FocusableStyle.
+- new widget style ContainerStyle: for all widgets that are containrs:
+  Frame, Panel, GroupBox, etc. (this style includes WS_CLIPCHILDREN and
+  WS_EX_CONTROLPARENT).
+- onDoubleClick() is automatically converted to onMouseDown() by
+  default.
+- added the Timer class (to control periodic tasks in milliseconds),
+  it doesn't uses the WM_TIMER message.
+- fixed Edit::preferredSize.
+- fixed double-buffering with clipping regions.
+- replaced postQuitMessage() (the WM_QUIT message isn't used anymore),
+  with breakMessageLoop() (using an internal flag).
+- better solution for onClose() event: now when a Frame is closed,
+  it's just hidden (like Dialogs). The message loop ends when all
+  frames are hidden (not disposed, just hidden).
+- getClientBounds() now isn't virtual (and it's like Win32
+  GetClientRect).
+- now GroupBox works (see PensBrushes example).
+
+Vaca 0.0.4
+
+- 11 new examples: BoxLayouts, CommandsAlt, Curves, FreeOfLayout,
+  Hashing, Images, MenuResource, MiniExplorer, Regions, StdCommands,
+  SystemImageList.
+- new addCommand/removeCommand in Frame.
+- merged "onHScroll" and "onVScroll" in "onScroll" event.
+- removed all onPower* events (you should use wndProc() for this kind
+  of specific tasks).
+- added automatic double-buffering option.
+- fixed Unicode support for Clipboard on Win2K/XP.
+- renamed "WidgetEvent" to "Event", and "WidgetEvent::getWidget" to
+  "Event::getSource".
+- added Component class.
+- removed VACA_ASSERT, use just "assert".
+- changed ProgressBar with a state-machine.
+- renamed getHwnd to getHWND (and all similar methods).
+- new Graphics::drawImageList
+- fixed TVN_GETDISPINFO for multi-threads.
+- fixed a lot of warnings (-Wall flag is activated now).
+- Tab::addPage split in addPage and insertPage.
+- renamed SpinButton::[gs]etPosition -> [gs]etValue.
+- renamed ListBox::getItemRect -> ListBox::getItemBounds.
+- added Widget::onDropFiles() and AcceptFilesStyle.
+- fixed the "double-click of dead" in ToolBars example (but still,
+  this examples has bugs, see BUGS.txt).
+- fixed preferred size of buttons on WinXP.
+- fixed "running on background" bug of ProgressBar example.
+- rewritten (fixed) the command-line parser in Application::run().
+- Graphics() constructor is protected, you should use ScreenGraphics()
+  to get a Graphics class to control the screen.
+
+Vaca 0.0.3
+
+- added VacaDoc.
+- new Scribble example.
+- new EyeDropper example.
+- added Cursor class.
+- new DragListBox.
+- reflection of onVScroll and onHScroll events.
+- new SpinButton and Spinner widgets (with examples).
+- new Slider widget.
+- new CancellableEvent and CloseEvent.
+- new ProgressBar widget (with example).
+- DockBar fully supports the Control key and the Esc key.
+- split DockArea in: abstract class DockArea and BasicDockArea.
+- fixed Graphics::measureString, default fitInWidth can't be INT_MAX,
+  must be less or equal than 32767 on Win98.
+- renamed the CustomButton::vs* methods to CustomButton::has*VisualAspect.
+- added Icon class, and Frame::setIcon().
+- added the Style class (to handle "style" and "style_ex" in one variable).
+- outsideWidget isn't used in destruction.
+- added BandedDockArea.
+- ToolBar and ToolSet work.
+- finished DockArea, DockBar and DockFrame: the whole thing is working.
+- added DockInfo and DefaultDockInfo.
+- added ToolBars example.
+- added Frame::onResizing and DockBar::onResizingFrame.
+
+Vaca 0.0.2
+
+- added thread support (Thread/MessengerThread/Mutex/ScopedLock).
+- renamed Widget::getWidgetPtr to Widget::getHwnd.
+- added Edit::preferredSize(fitIn).
+- tested on Win98, Win2K and WinXP: everything works!!!
+- big change: now all is processed in WM_COMMAND and not in
+  WM_MENUCOMMAND (WM_MENUCOMMAND has problems in Win98).
+  Added onIdAction.
+- added Widget::isEnabled and Widget::setEnabled.
+- added Widget::preferredSize(fitIn) and Label::preferredSize(fitIn).
+- finally Dialog keyboard works! I spend five hours to known that
+  Panel must have the WS_EX_CONTROLPARENT style.
+- fixed big bugs with creation process for Dialog, MdiChild and MdiFrame.
+- added Widget::defWndProc.
+- added Widget::onSetCursor.
+- added VBoxLayout, HBoxLayout.
+- added MdiFrame::onMoreWindows().
+- The TextEditor finally can Find/Replace text.
+- added GotFocus and LostFocus (for WM_SETFOCUS and WM_KILLFOCUS).
+- Widget, MenuItem, and Graphics are noncopyable.
+- renamed BasicWidget to Panel.
+- added FindTextDialog.
+- added ColorDialog.
+- more Binds.
+- added Edit::onChange
+- added Menu::onUpdate
+- fixed memory management of Widgets and Menus.
+- added MdiListMenu.
+- added FileDialog, OpenFileDialog, SaveFileDialog.
+- added ReBar.
+- renamed ToolBarFrame to DockFrame.
+- renamed ToolBar to DockBar, created a new ToolBar and ToolBarWidget.
+- added KeyEvent and Keys.
+- added CustomLabel and LinkLabel.
+- View class temporally deprecated.
+
+Vaca 0.0.1
+
+- Anchor, AnchorLayout, Application, BasicWidget, Bind, BoxLayout,
+  Button, ButtonBase, CheckBox, ClientLayout, Clipboard, Color,
+  Constraint, CustomColor, CustomLabel, Dialog, DockArea, Edit, Event,
+  Exception, Font, Frame, Graphics, GroupBox, Image, Item, Label,
+  Layout, ListBox, MdiClient, MdiChild, MdiFrame, MenuItem, Menu,
+  MenuSeparator, MenuBar, MouseEvent, Point, RadioButton, Rect,
+  Register, String, System, Thread, ToggleButton, ToolBar, TreeNode,
+  TreeView, TreeViewEvent, View, Widget, WidgetClass, WidgetEvent.
+- CVS import.
